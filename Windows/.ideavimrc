@@ -1,0 +1,16 @@
+set relativenumber number
+set visualbell
+set noerrorbells
+set commentary
+set ideajoin
+set highlightedyank
+set surround
+set vim-paragraph-motion
+set exchange
+set scrolloff=15
+set which-key
+set timeoutlen = 2000
+
+sethandler <C-v> i:ide
+
+inoremap jk <ESC>
