@@ -7,10 +7,19 @@ set highlightedyank
 set surround
 set vim-paragraph-motion
 set exchange
-set scrolloff=15
-set which-key
-set timeoutlen = 2000
-
-sethandler <C-v> i:ide
+set scrolloff=50
 
 inoremap jk <ESC>
+inoremap kj <cr>
+inoremap jj <ESC> /
+
+nnoremap L o<Esc>k
+nnoremap H O<Esc>j
+nnoremap gs :action GotoImplementation<CR>;
+nnoremap ga :action ShowUsage<CR>;
+
+nnoremap 0 $
+nnoremap 9 0eb
+nnoremap $ 9
+
+nnoremap ; <Esc>A;<Esc>
