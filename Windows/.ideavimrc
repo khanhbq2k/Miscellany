@@ -18,8 +18,11 @@ nnoremap H O<Esc>j
 nnoremap gs :action GotoImplementation<CR>;
 nnoremap ga :action ShowUsage<CR>;
 
+nnoremap <Space> @='jjjjjjjjjjj'<cr>
+nnoremap u @='kkkkkkkkkkk'<cr>
+
 nnoremap 0 $
-nnoremap 9 0eb
+nnoremap 9 ^
 nnoremap $ 9
 
 nnoremap ; <Esc>A;<Esc>
