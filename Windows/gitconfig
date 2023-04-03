@@ -1,0 +1,51 @@
+[diff "astextplain"]
+	textconv = astextplain
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[http]
+	sslBackend = openssl
+	sslCAInfo = C:/Program Files/Git/mingw64/ssl/certs/ca-bundle.crt
+[core]
+	autocrlf = true
+	fscache = true
+	symlinks = false
+	longpaths = true
+[pull]
+	rebase = false
+[credential]
+	helper = manager-core
+[credential "https://dev.azure.com"]
+	useHttpPath = true
+[init]
+	defaultBranch = master
+
+[alias]
+     lg = lg1
+     lg1 = lg1-specific --all
+     lg2 = lg2-specific --all
+     lg3 = lg3-specific --all
+     lg1-specific = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)'
+     lg2-specific = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n''
+     lg3-specific = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset) %C(bold cyan)(committed: %cD)%C(reset) %C(auto)%d%C(reset)%n''          %C(white)%s%C(reset)%n''          %C(dim white)- %an <%ae> %C(reset) %C(dim white)(committer: %cn <%ce>)%C(reset)'
+	ver = log --oneline --graph --color --all --decorate
+	p = push
+	pf = push -f
+	pu = pull
+	ck = checkout 
+	br = branch -vv
+	cm = commit
+	cmm = commit -m
+	st = status -sb
+	stl = stash list
+	sai = stash apply --index
+	ckm = checkout master --
+	cdm = !git checkout dev && git pull && git merge -
+	fom = fetch origin master:master
+	last = log -1 HEAD --stat
+	dno = diff --name-only
+	dv = difftool -t vimdiff -y
+	se = !git rev-list --all | xargs git grep -F
+	rsh = reset --hard
