@@ -1,4 +1,4 @@
-﻿#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
+#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 ; #Warn  ; Enable warnings to assist with detecting common errors.
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
@@ -48,13 +48,32 @@ MouseGetPos, xpos2, ypos2, Window, ClassNN
 WinActivate, ahk_id %Window%
 return
 
-; Navigate shorcut in chrome
-#IfWinActive ahk_exe browser.exe
+; Navigate shorcut in browsers
+; #IfWinActive ahk_exe browser.exe
+#If WinActive("ahk_exe browser.exe") or WinActive("ahk_exe msedge.exe")
 <!j::
 Send, ^+{Tab}
 return
 
-#IfWinActive ahk_exe browser.exe
+#If WinActive("ahk_exe browser.exe") or WinActive("ahk_exe msedge.exe")
 <!k::
 Send, ^{Tab}
 return
+
+#If WinActive("ahk_exe datagrip64.exe")
+!+P::
+    ; Get the dimensions of the active window
+    WinGetPos, X, Y, Width, Height, A
+    
+    ; Calculate position 100px left and 100px down from the top-right corner
+    TargetX := X + Width - 1300
+    TargetY := Y + 115
+    
+    ; Move the mouse to the calculated position
+    MouseMove, %TargetX%, %TargetY%
+    
+    ; Perform a left mouse click
+    Click
+    
+    return
+#If
