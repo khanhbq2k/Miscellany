@@ -1,9 +1,53 @@
+"" Source your .vimrc
+"source ~/.vimrc
+
+"" -- Suggested options --
+" Show a few lines of context around the cursor. Note that this makes the
+" text scroll if you mouse-click near the start or end of the window.
+set scrolloff=5
+
+" Do incremental searching.
+set incsearch
+
+" IntelliMacs, see more: https://github.com/MarcoIeni/intellimacs
+source ~/.intellimacs/spacemacs.vim
+
+" (Optional) Enable other Intellimacs modules
+source ~/.intellimacs/extra.vim
+source ~/.intellimacs/major.vim
+source ~/.intellimacs/hybrid.vim
+
+" (Optional) Enable which-key plugin
+source ~/.intellimacs/which-key.vim
+
+" Which key extension
+set which-key
+set timeoutlen=1000
+
+
+" Don't use Ex mode, use Q for formatting.
+map Q gq
+
+
+"" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
+"" Map \r to the Reformat Code action
+"map \r <Action>(ReformatCode)
+
+"" Map <leader>d to start debug
+"map <leader>d <Action>(Debug)
+
+"" Map \b to toggle the breakpoint on the current line
+"map \b <Action>(ToggleLineBreakpoint)
+
+
+" Find more examples here: https://jb.gg/share-ideavimrc
 set relativenumber number
 set visualbell
 set noerrorbells
 set commentary
 set ideajoin
 set highlightedyank
+set nohlsearch
 set surround
 set vim-paragraph-motion
 set exchange
@@ -13,16 +57,44 @@ inoremap jk <ESC>
 inoremap kj <cr>
 inoremap jj <ESC> /
 
+" These are to cancel the default behavior of d, D, c, C to put the text they delete in the default register.
+
+nnoremap d "_d
+vnoremap d "_d
+nnoremap D "_D
+vnoremap D "_D
+nnoremap c "_c
+vnoremap c "_c
+nnoremap C "_C
+vnoremap C "_C
+nnoremap x "_x
+vnoremap x "_x
+nnoremap X "_X
+vnoremap X "_X
+noremap <Del> "_x
+xnoremap p pgvy
+nnoremap yd yydd
+
+" Keep cursor at the bottom of the visual selection after you yank it.
+vmap y ygv
+
 nnoremap L o<Esc>k
 nnoremap H O<Esc>j
 nnoremap gs :action GotoImplementation<CR>;
 nnoremap ga :action ShowUsage<CR>;
 
-nnoremap <Space> @='jjjjjjjjjjj'<cr>
-nnoremap u @='kkkkkkkkkkk'<cr>
+"nnoremap <Space> @='jjjjjjjjjjj'<cr>
+"nnoremap <C-m> @='kkkkkkkkkkk'<cr>
+nnoremap <C-p> 10k
+nnoremap <C-m> 10j
 
 nnoremap 0 $
 nnoremap 9 ^
 nnoremap $ 9
 
 nnoremap ; <Esc>A;<Esc>
+
+
+" Leader key related
+let mapleader = ","
+nnoremap <leader>f :action ReformatCode<CR>
