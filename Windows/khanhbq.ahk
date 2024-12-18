@@ -3,15 +3,25 @@
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
+; Debug log file
+logFile := "debug.log"
+
+; Debug helper function
+Log(Message) {
+    global logFile
+    FileAppend, %Message%`n, %logFile%
+}
+
 <#W::WinMinimize, A
 <#<+W::WinMaximize, A
 
 ; Change focus on other screen windows
+; Note!: Be sure to check ahk detect what monitor is the first, and what is the second, cause "left" and "right" notion might be change
 <#k::
 CoordMode, Mouse, Screen
 SysGet, VirtualWidth, 78
 SysGet, VirtualHeight, 79
-MouseMove,(VirtualWidth*3/4),(VirtualHeight/2)
+MouseMove,(VirtualWidth/4),(VirtualHeight/2)
 MouseGetPos, xpos, ypos, Window, ClassNN
 WinActivate, ahk_id %Window%
 return
@@ -21,7 +31,7 @@ return
 CoordMode, Mouse, Screen
 SysGet, VirtualWidth, 78
 SysGet, VirtualHeight, 79
-MouseMove,(VirtualWidth/4),(VirtualHeight/2)
+MouseMove,(-VirtualWidth/4),(VirtualHeight/2)
 MouseGetPos, xpos, ypos, Window, ClassNN
 WinActivate, ahk_id %Window%
 return
